@@ -30,7 +30,6 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 }
 
 
-
 func main() {
 	fmt.Println(findMedianSortedArrays([]int{1, 2, 5, 10, 11}, []int{3, 4}))
 }
