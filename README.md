@@ -3,6 +3,8 @@
 
 https://www.sgxiaoma.com/zh/blog/why-singapore/
 
+https://my.oschina.net/jenkinszh/blog/3042391
+
 
 我们经常听到DevOps使用CI（持续集成）和CD（持续交付）来自动化软件开发管道。但这只是部分真相。
 
