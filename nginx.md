@@ -69,3 +69,88 @@ location = /XDFyle6tNA.txt {
 }
 ```
 很多时候微信等程序都需要我们放一个txt的文件到项目里以验证项目归属，我们可以直接通过上边这种方式修改nginx即可，无需真正的把文件给放到服务器上
+
+
+
+
+nginx配置upstream反向代理
+
+```
+http {
+    ...
+    upstream tomcats {
+        server 192.168.106.176 weight=1;
+        server 192.168.106.177 weight=1;
+    }
+    
+    server {
+        location /ops-coffee/ { 
+            proxy_pass http://tomcats; 
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+    
+}
+```
+稍不注意可能会落入一个proxy_pass加杠不加杠的陷阱，这里详细说下 proxy_pass http://tomcats与proxy_pass http://tomcats/的区别：
+
+虽然只是一个/的区别但结果确千差万别。分为以下两种情况：
+
+```
+
+目标地址中不带uri（proxy_pass http://tomcats）。此时新的目标url中，匹配的uri部分不做修改，原来是什么就是什么。
+location /ops-coffee/ {
+    proxy_pass  http://192.168.106.135:8181;
+}
+
+http://domain/ops-coffee/   -->     http://192.168.106.135:8181/ops-coffee/
+http://domain/ops-coffee/action/abc   -->     http://192.168.106.135:8181/ops-coffee/action/abc
+目标地址中带uri（proxy_pass http://tomcats/，/也是uri）,此时新的目标url中，匹配的uri部分将会被修改为该参数中的uri。
+location /ops-coffee/ {
+    proxy_pass  http://192.168.106.135:8181/;
+}
+
+http://domain/ops-coffee/   -->     http://192.168.106.135:8181
+http://domain/ops-coffee/action/abc   -->     http://192.168.106.135:8181/action/abc
+nginx upstream开启keepalive
+upstream tomcat {
+    server ops-coffee.cn:8080;
+    keepalive 1024;
+}
+
+server {
+    location / {
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        
+        proxy_pass http://tomcat;
+    }
+}
+
+```
+nginx在项目中大多数情况下会作为反向代理使用，例如nginx后接tomcat，nginx后接php等，这时我们开启nginx和后端服务之间的keepalive能够减少频繁创建TCP连接造成的资源消耗，配置如上
+
+keepalive： 指定每个nginxworker可以保持的最大连接数量为1024，默认不设置，即nginx作为client时keepalive未生效
+
+proxy_http_version 1.1： 开启keepalive要求HTTP协议版本为HTTP 1.1
+
+proxy_set_header Connection ""： 为了兼容老的协议以及防止http头中有Connection close导致的keepalive失效，这里需要及时清掉HTTP头部的Connection
+
+404自动跳转到首页
+
+```
+server {
+    location / {
+       error_page 404 =  @ops-coffee;
+    }
+    
+    location @ops-coffee {
+       rewrite  .*  / permanent;
+    }
+}
+```
+网站出现404页面不是特别友好，我们可以通过上边的配置在出现404之后给自动跳转到首页去
