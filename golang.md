@@ -246,3 +246,13 @@ redis上100k很正常，如果不考虑场景pipeline上200k也不是问题。�
 
 
 https://zhuanlan.zhihu.com/p/38636111
+
+
+
+
+goframe 挺好用的。
+goframe 对标 Python 中的 Django
+ gin 对标 Flask
+ 
+ 
+ https://www.jetbrains.com/lp/devecosystem-2020/go/
