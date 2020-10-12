@@ -36,3 +36,30 @@ class Solution:
         return count  
 
 ```
+
+
+员工可以通过职级的提升来了解到自己的成长情况，有意识的去学习和调整自己的工作状态来获得进步。当然这个也可能会带来一定的副作用，就是有可能会让员工变成提职驱动，只挑选那些有助于个人提升职级的事情做，而不一定是对企业有利的事情。管理者可以视公司的发展阶段逐步将职级信息开放。
+
+
+
+316
+
+
+```
+
+class Solution:
+    def removeDuplicateLetters(self, s):
+        last_occ = {c: i for i, c in enumerate(s)}
+        stack = ["!"]
+        Visited = set()
+        
+        for i, symbol in enumerate(s):
+            if symbol in Visited: continue
+            
+            while (symbol < stack[-1] and last_occ[stack[-1]] > i):
+                Visited.remove(stack.pop())
+           
+            stack.append(symbol)
+            Visited.add(symbol)        
+        return "".join(stack)[1:]
+```
