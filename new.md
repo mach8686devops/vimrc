@@ -20,6 +20,15 @@ https://bytedance.feishu.cn/docs/doccnCM2qmOtndpVjbOqYoEBVog
 
 452 射气球的问题
 
+描述：射气球，给定气球的放置范围[x_start, x_end]，问至少用多少箭，可以把气球都射掉
+链接：https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/，ACCode
+类别：数组、排序、贪心
+特点：区间覆盖
+思路：
+注意涉及区间覆盖的问题，首先先要界定区间覆盖的范围，观察这道题目的描述我们可以发现，若给定的两个区间存在交叉与重叠，那么我们将可以用一根箭破坏多个气球。举一个栗子，给定区间[0,6]、[3,7]，由于存在overlap[3,6]，因此我们可以在覆盖区间中任意选择一点，即可同时破坏这两个气球；另一种重叠情况，给定[0,6]、[2,3]，我们同样可以在[2,3]任意选择一点，同时破坏这两个气球。基于上述的讨论，我们对给定的区间进行排序，规则如下，按照x_start升序排列，当x_start相同时，按照x_end升序排列。而后从前向后扫描一次，当满足区间交叉与重叠时，数量减1。不满足时，以当前区间作为起点，重新判定。
+
+PS：为何贪心是有效的，可以利用反证法，当我们选定[a,b]中的b作为射击点时，存在另外一点[x, c]使得可包含更多的区间，我们分情况讨论，当[x,c]与[a,b]左相交时，x < a < c < b，若希望新增区间，则存在区间[d,e]与[x,c]相交但与[a,b]不相交，则满足 x < d < c < e 不满足 x < a < c < b，由于[d,e]与[a,b]均包含c，因此假设条件不成立。同理，当[x,c]为[a,b]子区间时，不提供新信息、当与[a,b]右相交时，也不提供新信息。
+
 ```
 class Solution:
     def findMinArrowShots(self, points):
@@ -43,6 +52,13 @@ class Solution:
 
 
 316
+
+描述：给定字符串S，移除多余字符，并保证字典序
+链接：https://leetcode.com/problems/remove-duplicate-letters/，ACCode
+类别：字符串
+特点：
+思路：
+1. 由于字符串中仅含有26个小写字母，因此，可以利用数组，统计每个字符的出现次数。其次，由于需要保存字典序，即当idx1 < idx2 and s[idx1] > s[idx2] and count[s[idx1]] > 1时，我们要优先采用s[idx2]因为s[idx1]可以在后面找到。因此我们需要利用到的信息有a.元素的出现次数 b. 元素是否已经被使用 c. 字典序的保持。a、b两点使用数组即可，c使用stack。
 
 
 ```
@@ -97,6 +113,14 @@ class Solution:
 933
 
 
+描述：计算给定时间窗口内，请求的数量
+链接：https://leetcode.com/problems/number-of-recent-calls/，ACCode
+类别：队列
+特点：
+思路：
+1. 队列的基础题目，给定时间窗口下，统计时间窗口下事件数量，由于题目是单增调用Ping函数，因此利用队列的特性，淘汰队列中时间窗口外的事件即可。
+
+
 ```
 
 class RecentCounter:
@@ -111,4 +135,29 @@ class RecentCounter:
             self.pingTimes.pop(i)
         
         return len(self.pingTimes)
+```
+
+
+数组的旋转
+
+
+描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。
+链接：
+类别：数组，二分查找
+特点：边界情况
+思路：
+
+
+
+```
+class Solution:
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        k %= n
+        nums[:] = nums[n-k:] + nums[:n-k]
 ```
