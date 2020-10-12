@@ -161,3 +161,66 @@ class Solution:
         k %= n
         nums[:] = nums[n-k:] + nums[:n-k]
 ```
+
+
+链表的旋转
+
+
+描述：对链表进行旋转，规则如下，k=2，给定链表5->3->2->NULL, k=2,  则 2-5-3->NULL
+链接：https://leetcode.com/problems/rotate-list/，ACCode
+类别：链表
+特点：成环
+思路：
+1. 对于链表的旋转，我们可以理解为是重新定义了链表的Head与Tail，同时需要注意，如果我们知道了旋转后链表的Tail，那么其Head为Tail->next。因此，对于该题目，第一步将链表成环、第二步对tail指针进行(len-k)次循环，得到旋转后链表的结尾，则newHead=tail->next，tail->next = NULL。
+2. 另一种办法则为对链表中的所有node进行重排序。
+
+
+```
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        
+        if not head:
+            return None
+        
+        lastElement = head
+        length = 1
+        # get the length of the list and the last node in the list
+        while ( lastElement.next ):
+            lastElement = lastElement.next
+            length += 1
+
+        # If k is equal to the length of the list then k == 0
+        # ElIf k is greater than the length of the list then k = k % length
+        k = k % length
+            
+        # Set the last node to point to head node
+        # The list is now a circular linked list with last node pointing to first node
+        lastElement.next = head
+        
+        # Traverse the list to get to the node just before the ( length - k )th node.
+        # Example: In 1->2->3->4->5, and k = 2
+        #          we need to get to the Node(3)
+        tempNode = head
+        for _ in range( length - k - 1 ):
+            tempNode = tempNode.next
+        
+        # Get the next node from the tempNode and then set the tempNode.next as None
+        # Example: In 1->2->3->4->5, and k = 2
+        #          tempNode = Node(3)
+        #          answer = Node(3).next => Node(4)
+        #          Node(3).next = None ( cut the linked list from here )
+        answer = tempNode.next
+        tempNode.next = None
+        
+        return answer
+
+
+```
