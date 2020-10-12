@@ -24,7 +24,8 @@ https://www.v2ex.com/t/712932#reply0
 452 射气球的问题
 
 描述：射气球，给定气球的放置范围[x_start, x_end]，问至少用多少箭，可以把气球都射掉
-链接：https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/，ACCode
+链接：https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
+
 类别：数组、排序、贪心
 特点：区间覆盖
 思路：
@@ -57,7 +58,7 @@ class Solution:
 316
 
 描述：给定字符串S，移除多余字符，并保证字典序
-链接：https://leetcode.com/problems/remove-duplicate-letters/，ACCode
+链接：https://leetcode.com/problems/remove-duplicate-letters/
 类别：字符串
 特点：
 思路：
@@ -88,7 +89,7 @@ class Solution:
 38
 
 描述：给定数组A，数组中无重复元素，给定目标数字Target，使用A中的元素（任意次数）构造和为Target的组合数，输出所有组合。
-链接：https://leetcode.com/problems/combination-sum/，ACCode
+链接：https://leetcode.com/problems/combination-sum/
 类别：动态规划，DFS
 特点：背包问题、线性规划
 
@@ -117,7 +118,7 @@ class Solution:
 
 
 描述：计算给定时间窗口内，请求的数量
-链接：https://leetcode.com/problems/number-of-recent-calls/，ACCode
+链接：https://leetcode.com/problems/number-of-recent-calls/
 类别：队列
 特点：
 思路：
