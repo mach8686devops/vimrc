@@ -231,3 +231,40 @@ class Solution:
 
 
 https://github.com/EZLippi/practical-programming-books#python
+
+
+
+611
+
+描述：给定数组[1,2,3,4,5,6]任意选择3个数字，可以组成多个三角形
+链接：https://leetcode.com/problems/valid-triangle-number/，ACCode
+类别：数组
+特点：双指针，核心在于减少不必要的判断
+思路：
+1. 朴素的想法，可以直接三层循环暴力计算，复杂度为O(N^3)
+2. 进一步优化，当任意三个数字满足A[i]<A[j]<A[k]，仅判断A[i]+A[j] > A[k]即可，因此可以将原数组排序，在确定k后，在[i,j]中判断满足A[i]+A[j] > A[k]的个数。整体复杂度优化为O(N^2 + NlogN)
+
+
+```
+
+class Solution:
+    def triangleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        c = 0
+        n = len(nums)
+        nums.sort()
+        for i in range(n-1,1,-1):
+            lo = 0
+            hi = i - 1
+            while lo < hi:
+                if nums[hi]+nums[lo] > nums[i]:
+                    c += hi-lo
+                    hi -= 1
+                else:
+                    lo += 1
+        return c
+```
