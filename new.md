@@ -6,6 +6,9 @@ https://space.bilibili.com/9099840
 https://bytedance.feishu.cn/docs/doccnCM2qmOtndpVjbOqYoEBVog
 
 
+https://www.v2ex.com/t/712932#reply0
+
+
 
 高可用普罗米修斯的常见问题
 
