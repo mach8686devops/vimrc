@@ -63,3 +63,52 @@ class Solution:
             Visited.add(symbol)        
         return "".join(stack)[1:]
 ```
+
+
+
+38
+
+描述：给定数组A，数组中无重复元素，给定目标数字Target，使用A中的元素（任意次数）构造和为Target的组合数，输出所有组合。
+链接：https://leetcode.com/problems/combination-sum/，ACCode
+类别：动态规划，DFS
+特点：背包问题、线性规划
+
+```
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates.sort()
+        self.backtrack(candidates, target, [], res)
+        return res
+    
+    def backtrack(self, candidates, target, path, res):
+  
+        if target == 0: # check if solution can be accepted
+            res.append(path)
+            return
+        
+        for i, c in enumerate(candidates):
+            if target-c < 0: break # prune the tree
+            self.backtrack(candidates[i:], target-c, path+[c], res)
+```
+
+
+933
+
+
+```
+
+class RecentCounter:
+
+    def __init__(self):
+        self.pingTimes = []
+
+    def ping(self, t: int) -> int:
+        self.pingTimes.append(t)
+        i = 0
+        while self.pingTimes[i] < t - 3000:
+            self.pingTimes.pop(i)
+        
+        return len(self.pingTimes)
+```
