@@ -170,7 +170,7 @@ class Solution:
 
 
 描述：对链表进行旋转，规则如下，k=2，给定链表5->3->2->NULL, k=2,  则 2-5-3->NULL
-链接：https://leetcode.com/problems/rotate-list/，ACCode
+链接：https://leetcode.com/problems/rotate-list/
 类别：链表
 特点：成环
 思路：
@@ -237,7 +237,7 @@ https://github.com/EZLippi/practical-programming-books#python
 611
 
 描述：给定数组[1,2,3,4,5,6]任意选择3个数字，可以组成多个三角形
-链接：https://leetcode.com/problems/valid-triangle-number/，ACCode
+链接：https://leetcode.com/problems/valid-triangle-number/
 类别：数组
 特点：双指针，核心在于减少不必要的判断
 思路：
@@ -267,4 +267,26 @@ class Solution:
                 else:
                     lo += 1
         return c
+```
+
+描述：给定数组[1,2,3,4,5,6]，统计所有子数组和为奇数的个数
+链接：https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/
+类别：数组
+特点：前缀和的运用
+思路：
+1. 朴素的想法，计算所有滑动窗口下的子数组和，判断奇偶后统计结果
+2. 进一步优化，任意一个子数组等于两个前缀和相减，因此可以实时统计奇/偶前缀和的个数，相加求和即可。
+
+
+```
+
+class Solution:
+    def numOfSubarrays(self, arr: List[int]) -> int:
+        res = odd = even = 0
+        for x in arr:
+            even += 1
+            if x & 1:
+                odd, even = even, odd
+            res = (res + odd) % 1000000007             
+        return res            
 ```
