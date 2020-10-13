@@ -340,3 +340,18 @@ class Solution(object):
     	return self.helper(node.left, min, node.val) and self.helper(node.right, node.val, max)
 
 ```
+
+
+859
+
+
+```
+
+    def buddyStrings(self, A, B):
+        if len(A) != len(B): 
+            return False
+        if A == B and len(set(A)) < len(A): 
+            return True
+        dif = [(a, b) for a, b in zip(A, B) if a != b]
+        return len(dif) == 2 and dif[0] == dif[1][::-1]
+```
