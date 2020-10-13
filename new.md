@@ -2,6 +2,8 @@
 
 https://space.bilibili.com/9099840
 
+https://qoogle.top/basic-algorithm-series/
+
 
 https://bytedance.feishu.cn/docs/doccnCM2qmOtndpVjbOqYoEBVog
 
