@@ -34,3 +34,6 @@ core sre
 
 
 生命周期的角度看待应用运维
+
+
+https://gitmind.cn/app/doc/8ee830801
