@@ -119,3 +119,47 @@ https://www.v2ex.com/t/715851#reply9
 
 https://www.v2ex.com/t/713968#reply29
 
+
+
+whois 查询： who.is 、 woe.pw (推荐)
+
+域名溢价查询： yijia.me
+
+最终核实域名是不是可以注册： domai.nr、whois.domaintools.com、注册局
+
+注册局官网以及联系方式查询：https://www.iana.org/domains/root/db/xxx.html 将 xxx 替换为某个后缀
+
+可注册域名扫描（米友作品）： name.tg
+
+域名过期时间删除时间查询： expireddomains.net
+
+域名后缀注册量查询: www.363.hk/web/registration
+
+新后缀目前市场占有率查询： namestat.org
+
+全球每天有哪些域名被注册了： dnpedia.com/tlds/daily.php
+
+国内有哪些后缀可以备案： 域名。信息
+
+国内平台域名成交价格查询： wanmi.cc
+
+国际域名成交价格查询： namebio.com
+
+域名在哪里注册最便宜： tld-list.com 、nazhumi.com
+
+域名被墙污染查询： zijian.aliyun.com
+
+域名建站历史查询： archive.org
+
+域名 DNS 修改历史查询： completedns.com
+
+域名优惠活动： Namebeta.com
+
+域名备案查询: micp.chinaz.com
+
+Hack 单词查询： word.ws
+
+域名注册情况： ntldstats.com
+
+货币汇率转换： freecurrencyrates.com
+
